@@ -3,16 +3,17 @@
 enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
 
 data class Usuario(val nome: String, val email: String)
-// habilidades e objetivos (array string)
+// habilidades e objetivos (array string) -> Implementação futura
 
-data class ConteudoEducacional(val nome: String, val duracao: Int)
-// tecnologias (array string), nivel
+data class ConteudoEducacional(val nome: String, val duracao: Int) : Formacao(nome = nome, conteudos = conteudos) // ConteudoEducacional faz parte da classe Formacao
+// nivel
+// tecnologias (array string) -> Implementação futura
 
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
+open class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) { // Formacao é uma Superclasse
 
     val inscritos = mutableListOf<Usuario>()
     
-    fun matricular(usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
+    fun matricular(vararg usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
         TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
     }
 }
