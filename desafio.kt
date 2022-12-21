@@ -5,8 +5,8 @@ enum class Nivel { BASICO, INTERMEDIARIO, AVANCADO }
 data class Usuario(val nome: String, val email: String)
 // habilidades e objetivos (array string) -> Implementação futura
 
-data class ConteudoEducacional(val nome: String, val duracao: Int) : Formacao(nome = nome, conteudos = conteudos) // ConteudoEducacional faz parte da classe Formacao
-// nivel
+data class ConteudoEducacional(val nome: String, val nivel: Nivel, val duracao: Int) : Formacao(nome = nome, conteudos = conteudos) 
+// ConteudoEducacional faz parte da classe Formacao
 // tecnologias (array string) -> Implementação futura
 
 open class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) { // Formacao é uma Superclasse
