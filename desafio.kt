@@ -12,14 +12,21 @@ data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) 
 
 	val inscritos = mutableListOf<Usuario>()
     
-	fun matricular(usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
+	open fun matricular(vararg usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
     	inscritos.add(usuario)
+        println("$usuario")
+
     	//TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
 	}
     
     fun users(): MutableList<Usuario> {
     	return inscritos
 	}
+    
+            
+    matricular("Raul", "raul@gmail.com")
+        
+    println("$inscritos")
    
 }  
 
@@ -40,6 +47,10 @@ fun main() {
     
     println(content1)
     println(content2)
+    
+    //matricular("Raul", "raul@gmail.com")
+    
+    //println("$inscritos")
    
     //users().forEach {
         //inscritos -> println("O(A) aluno(a) $inscritos está na lista de matriculados")
