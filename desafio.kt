@@ -10,12 +10,18 @@ data class ConteudoEducacional(val nome: String, val nivel: Nivel, val duracao: 
 
 data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
 
-    val inscritos = mutableListOf<Usuario>()
+	val inscritos = mutableListOf<Usuario>()
     
-    fun matricular(vararg usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
-        //TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-    }
-}
+	fun matricular(usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
+    	inscritos.add(usuario)
+    	//TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+	}
+    
+    fun users(): MutableList<Usuario> {
+    	return inscritos
+	}
+   
+}  
 
 fun main() {
     //TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
@@ -28,5 +34,14 @@ fun main() {
     println(aluno1)
     println(aluno2)
     println(aluno3)
-    //println(inscritos)
+    
+    val content1 = ConteudoEducacional("Introdução ao Kotlin", Nivel.BASICO, 60)
+    val content2 = ConteudoEducacional("Estruturas de Controle de Fluxo em Kotlin", Nivel.INTERMEDIARIO, 120)
+    
+    println(content1)
+    println(content2)
+   
+    //users().forEach {
+        //inscritos -> println("O(A) aluno(a) $inscritos está na lista de matriculados")
+    //}
 }
