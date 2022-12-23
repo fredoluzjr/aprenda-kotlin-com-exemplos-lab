@@ -8,22 +8,17 @@ data class Usuario(val nome: String, val email: String)
 data class ConteudoEducacional(val nome: String, val nivel: Nivel, val duracao: Int)
 // tecnologias (array string) -> Implementação futura
 
-open class Formacao(val nome: String, var conteudos: MutableList<ConteudoEducacional>) {
+data class Formacao(val nome: String, var conteudos: MutableList<ConteudoEducacional>)
 
-	val inscritos = mutableListOf<Usuario>()
+val inscritos = mutableListOf<Usuario>()
     
-	open fun matricular(usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
-    	inscritos.add(usuario)
-        println("$usuario")
+fun matricular(usuario: Usuario, formacao: Formacao) { // vararg para poder inscrever um ou varios usuarios -> Implementação futura
+    inscritos.add(usuario)
+    println("O(A) aluno(a) $usuario foi matriculado(a) na formação $formacao")
+	println("A lista total de inscritos é: $inscritos")
 
-    	//TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
-	}
-    
-    fun users(): MutableList<Usuario> {
-    	return inscritos
-	}
-   
-}  
+   	//TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
+}
 
 fun main() {
     //TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
@@ -32,6 +27,9 @@ fun main() {
     val aluno1 = Usuario("Jorge", "jorge@email.com")
     val aluno2 = Usuario("Ana", "ana@gmail.com")
     val aluno3 = Usuario("Caio", "caio@gmail.com")
+    val aluno4 = Usuario("Raul", "raul@gmail.com")
+    val aluno5 = Usuario("Moana", "Moana@gmail.com")
+    val aluno6 = Usuario("Maria", "maria@gmail.com")
     
     println(aluno1)
     println(aluno2)
@@ -53,13 +51,16 @@ fun main() {
     println(contentB)
     
     val formacao1 = Formacao("Formação Kotlin", mutableListOf(contentA1, contentA2))
+    val formacao2 = Formacao("Formação Java", mutableListOf(contentB1, contentB2))
+    
     println(formacao1)
+    println(formacao2)
     
-    //matricular("Raul", "raul@gmail.com")
+    println(inscritos)
     
-    //println("$inscritos")
-   
-    //users().forEach {
-        //inscritos -> println("O(A) aluno(a) $inscritos está na lista de matriculados")
-    //}
+    val inscrito1 = matricular(aluno3,formacao1)  
+    val inscrito2 = matricular(aluno4,formacao1)
+    val inscrito3 = matricular(aluno5,formacao2)
+    val inscrito4 = matricular(aluno6,formacao2)
+    
 }
