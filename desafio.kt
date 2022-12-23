@@ -8,11 +8,11 @@ data class Usuario(val nome: String, val email: String)
 data class ConteudoEducacional(val nome: String, val nivel: Nivel, val duracao: Int)
 // tecnologias (array string) -> Implementação futura
 
-data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) {
+open class Formacao(val nome: String, var conteudos: MutableList<ConteudoEducacional>) {
 
 	val inscritos = mutableListOf<Usuario>()
     
-	open fun matricular(vararg usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
+	open fun matricular(usuario: Usuario) { // vararg para poder inscrever um ou varios usuarios
     	inscritos.add(usuario)
         println("$usuario")
 
@@ -22,11 +22,6 @@ data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) 
     fun users(): MutableList<Usuario> {
     	return inscritos
 	}
-    
-            
-    matricular("Raul", "raul@gmail.com")
-        
-    println("$inscritos")
    
 }  
 
@@ -42,11 +37,23 @@ fun main() {
     println(aluno2)
     println(aluno3)
     
-    val content1 = ConteudoEducacional("Introdução ao Kotlin", Nivel.BASICO, 60)
-    val content2 = ConteudoEducacional("Estruturas de Controle de Fluxo em Kotlin", Nivel.INTERMEDIARIO, 120)
+    val contentA1 = ConteudoEducacional("Introdução ao Kotlin", Nivel.BASICO, 60)
+    val contentA2 = ConteudoEducacional("Estruturas de Controle de Fluxo em Kotlin", Nivel.INTERMEDIARIO, 120)
+    val contentA: MutableList<ConteudoEducacional> = mutableListOf(contentA1, contentA2)
     
-    println(content1)
-    println(content2)
+    val contentB1 = ConteudoEducacional("Introdução ao Java", Nivel.BASICO, 60)
+    val contentB2 = ConteudoEducacional("Estruturas avançadas em Java", Nivel.AVANCADO, 160)
+    val contentB: MutableList<ConteudoEducacional> = mutableListOf(contentB1, contentB2)
+    
+    println(contentA1)
+    println(contentA2)
+    println(contentB1)
+    println(contentB2)
+    println(contentA)
+    println(contentB)
+    
+    val formacao1 = Formacao("Formação Kotlin", mutableListOf(contentA1, contentA2))
+    println(formacao1)
     
     //matricular("Raul", "raul@gmail.com")
     
